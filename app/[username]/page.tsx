@@ -3,11 +3,13 @@ import { notFound } from 'next/navigation'
 
 const G = '#C1FF1A'
 
-export default async function CreatorPage({ params }: { params: { username: string } }) {
+export default async function CreatorPage({ params }: { params: Promise<{ username: string }> }) {
+  const { username } = await params
+
   const { data: profile } = await supabase
     .from('profiles')
     .select('*')
-    .eq('username', params.username)
+    .eq('username', username)
     .single()
 
   if (!profile) return notFound()
@@ -77,4 +79,4 @@ export default async function CreatorPage({ params }: { params: { username: stri
       </div>
     </main>
   )
-            }
+}
