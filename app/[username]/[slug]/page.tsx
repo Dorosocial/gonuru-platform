@@ -42,7 +42,7 @@ export default function GiftPage({ params }: { params: { username: string, slug:
     setSubmitting(true)
     setError('')
 
-    const { error: e } = await supabase.from('transactions').insert({
+    const { error: insertError } = await supabase.from('transactions').insert({
       creator_id: profile.id,
       buyer_email: email,
       amount: parseFloat(amount),
@@ -51,7 +51,7 @@ export default function GiftPage({ params }: { params: { username: string, slug:
       message,
     })
 
-    if (e) { setError(e.message); setSubmitting(false); return }
+    if (insertError) { setError(insertError.message); setSubmitting(false); return }
     setDone(true)
   }
 
@@ -64,10 +64,7 @@ export default function GiftPage({ params }: { params: { username: string, slug:
   if (done) return (
     <main className="min-h-screen bg-black text-white flex items-center justify-center px-4">
       <div className="text-center max-w-sm">
-        <div
-          className="w-16 h-16 flex items-center justify-center mx-auto mb-6"
-          style={{ backgroundColor: G }}
-        >
+        <div className="w-16 h-16 flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: G }}>
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="3">
             <polyline points="20 6 9 17 4 12"/>
           </svg>
@@ -87,10 +84,7 @@ export default function GiftPage({ params }: { params: { username: string, slug:
     <main className="min-h-screen bg-black text-white">
       <div className="max-w-md mx-auto px-4 py-16">
         <div className="text-center mb-10">
-          <div
-            className="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-xl font-black"
-            style={{ backgroundColor: '#111', border: '1px solid #222', color: G }}
-          >
+          <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-xl font-black" style={{ backgroundColor: '#111', border: '1px solid #222', color: G }}>
             {profile.full_name?.[0] || profile.username?.[0]}
           </div>
           <h1 className="text-xl font-black">{profile.full_name || profile.username}</h1>
@@ -159,7 +153,7 @@ export default function GiftPage({ params }: { params: { username: string, slug:
             className="w-full py-4 text-base font-bold text-black transition hover:opacity-90 disabled:opacity-50"
             style={{ backgroundColor: G }}
           >
-            {submitting ? 'Processing...' : `Send &#8373; ${amount || '0'}`}
+            {submitting ? 'Processing...' : `Send \u20B3 ${amount || '0'}`}
           </button>
         </form>
 
@@ -169,4 +163,4 @@ export default function GiftPage({ params }: { params: { username: string, slug:
       </div>
     </main>
   )
-  }
+}
