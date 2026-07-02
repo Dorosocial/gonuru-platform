@@ -5,7 +5,7 @@ import { supabase } from '@/lib/supabase'
 
 const G = '#C1FF1A'
 
-export default function GiftPage({ params }: { params: { username: string, slug: string } }) {
+export default function GiftPage({ params }: { params: Promise<{ username: string, slug: string }> }) {
   const [profile, setProfile] = useState<any>(null)
   const [amount, setAmount] = useState('')
   const [message, setMessage] = useState('')
@@ -14,18 +14,24 @@ export default function GiftPage({ params }: { params: { username: string, slug:
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
+  const [username, setUsername] = useState('')
+  const [slug, setSlug] = useState('')
 
   const PRESETS = [10, 20, 50, 100, 200, 500]
 
   useEffect(() => {
     const load = async () => {
+      const { username: u, slug: s } = await params
+      setUsername(u)
+      setSlug(s)
+
       const { data } = await supabase
         .from('profiles')
         .select('*')
-        .eq('username', params.username)
+        .eq('username', u)
         .single()
 
-      if (!data || !data.show_love_active || data.show_love_slug !== params.slug) {
+      if (!data || !data.show_love_active || data.show_love_slug !== s) {
         window.location.href = '/'
         return
       }
@@ -33,7 +39,7 @@ export default function GiftPage({ params }: { params: { username: string, slug:
       setLoading(false)
     }
     load()
-  }, [params.username, params.slug])
+  }, [params])
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -73,7 +79,7 @@ export default function GiftPage({ params }: { params: { username: string, slug:
         <p className="text-zinc-400 text-sm">
           Your gift of &#8373; {amount} has been sent to {profile.full_name || profile.username}. Thank you.
         </p>
-        <a href={`/${params.username}`} className="block mt-8 text-sm text-zinc-500 hover:text-white transition">
+        <a href={`/${username}`} className="block mt-8 text-sm text-zinc-500 hover:text-white transition">
           Back to profile
         </a>
       </div>
@@ -153,7 +159,7 @@ export default function GiftPage({ params }: { params: { username: string, slug:
             className="w-full py-4 text-base font-bold text-black transition hover:opacity-90 disabled:opacity-50"
             style={{ backgroundColor: G }}
           >
-            {submitting ? 'Processing...' : `Send \u20B3 ${amount || '0'}`}
+            {submitting ? 'Processing...' : `Send &#8373; ${amount || '0'}`}
           </button>
         </form>
 
@@ -163,4 +169,4 @@ export default function GiftPage({ params }: { params: { username: string, slug:
       </div>
     </main>
   )
-}
+            }
