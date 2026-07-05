@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-4">
-      <h1 className="text-7xl font-black tracking-tight mb-4">gonuru</h1>
+      <h1 className="text-7xl font-black tracking-tight mb-4">zonuru</h1>
       <p className="text-zinc-400 text-lg mb-10">Earn from your audience, finally.</p>
       <div className="flex gap-4">
         <a
