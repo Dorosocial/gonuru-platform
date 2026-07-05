@@ -48,7 +48,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div className="min-h-screen bg-black text-white flex">
       <aside className="hidden md:flex flex-col w-56 border-r border-zinc-800 min-h-screen fixed left-0 top-0">
         <div className="p-6 border-b border-zinc-800">
-          <a href="/" className="text-xl font-black tracking-tight">gonuru</a>
+          <a href="/" className="text-xl font-black tracking-tight">
+            <span style={{ color: G }}>z</span>onuru
+          </a>
           {profile && <p className="text-xs text-zinc-500 mt-1">@{profile.username}</p>}
         </div>
         <nav className="flex-1 p-4 flex flex-col gap-1">
@@ -80,7 +82,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       <main className="flex-1 md:ml-56 pb-20 md:pb-0">
         <div className="md:hidden flex items-center justify-between px-4 py-4 border-b border-zinc-800">
-          <a href="/" className="text-lg font-black tracking-tight">gonuru</a>
+          <a href="/" className="text-lg font-black tracking-tight">
+            <span style={{ color: G }}>z</span>onuru
+          </a>
           {profile && <p className="text-xs text-zinc-500">@{profile.username}</p>}
         </div>
         {children}
@@ -101,4 +105,4 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </nav>
     </div>
   )
-                                                                                                                                                            }
+                                                                                                                                                                                                                                                    }
