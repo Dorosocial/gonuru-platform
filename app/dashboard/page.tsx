@@ -46,7 +46,7 @@ export default function Dashboard() {
     <div className="p-6 max-w-4xl mx-auto">
       <div className="mb-8">
         <h1 className="text-2xl font-black text-white">Welcome back, {firstName}</h1>
-        <p className="text-zinc-500 text-sm mt-1">Here is how your Gonuru is doing</p>
+        <p className="text-zinc-500 text-sm mt-1">Here is how your Zonuru is doing</p>
       </div>
 
       <div className="bg-zinc-900 border border-zinc-800 p-6 mb-6 flex items-center justify-between">
@@ -101,10 +101,10 @@ export default function Dashboard() {
           <div className="bg-zinc-900 border border-zinc-800 p-4 flex items-center justify-between">
             <div>
               <p className="text-xs text-zinc-400 mb-0.5">Your page</p>
-              <p className="text-sm font-semibold text-white">gonuru.com/{profile?.username}</p>
+              <p className="text-sm font-semibold text-white">zonuru.com/{profile?.username}</p>
             </div>
             <button
-              onClick={() => copy(`https://gonuru.com/${profile?.username}`, 'page')}
+              onClick={() => copy(`https://zonuru.com/${profile?.username}`, 'page')}
               className="text-xs font-bold px-3 py-1.5 border border-zinc-700 hover:border-white text-white transition"
             >
               {copied === 'page' ? 'Copied!' : 'Copy'}
@@ -114,10 +114,10 @@ export default function Dashboard() {
             <div className="bg-zinc-900 border border-zinc-800 p-4 flex items-center justify-between">
               <div>
                 <p className="text-xs text-zinc-400 mb-0.5">{profile.show_love_label} link</p>
-                <p className="text-sm font-semibold text-white">gonuru.com/{profile?.username}/{profile?.show_love_slug}</p>
+                <p className="text-sm font-semibold text-white">zonuru.com/{profile?.username}/{profile?.show_love_slug}</p>
               </div>
               <button
-                onClick={() => copy(`https://gonuru.com/${profile?.username}/${profile?.show_love_slug}`, 'gift')}
+                onClick={() => copy(`https://zonuru.com/${profile?.username}/${profile?.show_love_slug}`, 'gift')}
                 className="text-xs font-bold px-3 py-1.5 border border-zinc-700 hover:border-white text-white transition"
               >
                 {copied === 'gift' ? 'Copied!' : 'Copy'}
